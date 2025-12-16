@@ -24,8 +24,9 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: 'https://talkie-e8db6.web.app/',
-    methods: ['GET', 'POST']
+    origin: 'https://talkie-e8db6.web.app',
+    methods: ['GET', 'POST'],
+    credentials: true
   }
 });
 
