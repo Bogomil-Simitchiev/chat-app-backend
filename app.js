@@ -22,16 +22,24 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 
+const allowedOrigins = [
+  'https://talkie-e8db6.web.app',
+  'https://talkie-e8db6.firebaseapp.com'
+];
+
 const io = new Server(server, {
   cors: {
-    origin: 'https://talkie-e8db6.web.app',
+    origin: allowedOrigins,
     methods: ['GET', 'POST'],
     credentials: true
   }
 });
 
 // MIDDLEWARES
-app.use(cors());
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
 app.use(express.json());
 
 app.use(session({
